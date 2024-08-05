@@ -1,29 +1,25 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Common/Navbar';
-import Home from './pages/Home';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
-import Profile from './pages/Profile';
-import SongList from './components/Music/SongList';
-import { AuthProvider } from './context/AuthContext';
+import Albums from './components/Albums';
+import Songs from './components/Songs'; // Componente nuevo para las canciones
+import Navbar from './components/Navbar';
 
-const App = () => {
-    return (
-        <AuthProvider>
-            <Router>
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/songs" element={<SongList />} />
-                </Routes>
-            </Router>
-        </AuthProvider>
-    );
-};
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <div className="container mt-5">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/albums" element={<Albums />} />
+          <Route path="/albums/:id/songs" element={<Songs />} /> {/* Ruta para canciones */}
+        </Routes>
+      </div>
+    </Router>
+  );
+}
 
 export default App;
